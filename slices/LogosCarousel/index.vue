@@ -9,16 +9,40 @@ defineProps(
     "index",
     "slices",
     "context",
-  ]),
+  ])
 );
 </script>
 
 <template>
-  <section
-    :data-slice-type="slice.slice_type"
-    :data-slice-variation="slice.variation"
-  >
-    Placeholder component for logos_carousel (variation: {{ slice.variation }})
-    Slices
-  </section>
+  <Bounded as="section" class="bg-white">
+    <div class="grid gap-12">
+      <Heading
+        v-if="$prismic.asText(slice.primary.eyebrowheadline)"
+        class="text-center"
+      >
+        {{ $prismic.asText(slice.primary.eyebrowheadline) }}
+      </Heading>
+      <ul class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <li
+          v-for="item in slice.items"
+          :key="item.image.url ?? undefined"
+          class="grid gap-8"
+        >
+          <!-- <div
+            v-if="item.image.url"
+            class="bg-gray-100"
+          >
+            <PrismicImage
+              :field="item.image"
+            />
+          </div> -->
+          <div v-if="item.link && ('id' in item.link || 'url' in item.link)">
+            <PrismicLink :field="item.link" class="font-semibold">
+              <PrismicImage :field="item.image" />
+            </PrismicLink>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </Bounded>
 </template>

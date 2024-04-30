@@ -35,6 +35,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "logos_carousel": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             },
@@ -54,6 +57,15 @@
               "type": "SharedSlice"
             }
           }
+        }
+      }
+    },
+    "SeoMeta": {
+      "og_title": {
+        "type": "Text",
+        "config": {
+          "label": "og:title",
+          "placeholder": ""
         }
       }
     }
