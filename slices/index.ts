@@ -7,9 +7,12 @@ export const components = defineSliceZoneComponents({
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
   image: defineAsyncComponent(() => import("./Image/index.vue")),
   image_cards: defineAsyncComponent(() => import("./ImageCards/index.vue")),
+  logos_carousel: defineAsyncComponent(
+    () => import("./LogosCarousel/index.vue"),
+  ),
   quote: defineAsyncComponent(() => import("./Quote/index.vue")),
   text: defineAsyncComponent(() => import("./Text/index.vue")),
   text_with_image: defineAsyncComponent(
-    () => import("./TextWithImage/index.vue")
+    () => import("./TextWithImage/index.vue"),
   ),
 });

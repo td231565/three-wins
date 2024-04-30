@@ -1,8 +1,6 @@
 {
-  "libraries": [
-    "./slices"
-  ],
+  "libraries": ["./slices"],
   "adapter": "@slicemachine/adapter-nuxt",
-  "repositoryName": "nextjs-starter-prismic-multi-page",
+  "repositoryName": "nuxt-stat",
   "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
 }

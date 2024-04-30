@@ -1,5 +1,7 @@
-import tailwindAspectRatio from '@tailwindcss/aspect-ratio'
-import { repositoryName } from './slicemachine.config.json'
+import tailwindAspectRatio from "@tailwindcss/aspect-ratio";
+import { repositoryName } from "./slicemachine.config.json";
+
+const prismicKey = import.meta.env.NUXT_PRISMIC;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -7,77 +9,72 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Prismic + Nuxt multi-page example',
+      title: "Prismic + Nuxt multi-page example",
       htmlAttrs: {
-        lang: 'en'
+        lang: "en",
       },
       meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Prismic + Nuxt multi-page example'
+          hid: "description",
+          name: "description",
+          content: "Prismic + Nuxt multi-page example",
         },
-        { name: 'format-detection', content: 'telephone=no' }
+        { name: "format-detection", content: "telephone=no" },
       ],
-      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
-    }
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+    },
   },
 
   css: [
-    '~/styles/global.css',
-    '@fontsource/inter/400.css',
-    '@fontsource/inter/500.css',
-    '@fontsource/inter/600.css'
+    "~/styles/global.css",
+    "@fontsource/inter/400.css",
+    "@fontsource/inter/500.css",
+    "@fontsource/inter/600.css",
   ],
 
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
-     cssnano:
-       process.env.NODE_ENV === 'production'
-         ? { preset: ['default', { discardComments: { removeAll: true } }] }
-         : false, // disable cssnano when not in production
+      cssnano:
+        process.env.NODE_ENV === "production"
+          ? { preset: ["default", { discardComments: { removeAll: true } }] }
+          : false, // disable cssnano when not in production
     },
   },
 
-  modules: [
-    '@nuxtjs/prismic',
-    '@nuxtjs/tailwindcss'
-  ],
+  modules: ["@nuxtjs/prismic", "@nuxtjs/tailwindcss"],
 
   prismic: {
     endpoint: repositoryName,
-    preview: '/api/preview',
+    preview: "/api/preview",
     clientConfig: {
       routes: [
         {
-          type: 'page',
-          path: '/:uid',
+          type: "page",
+          path: "/:uid",
         },
         {
-          type: 'page',
-          uid: 'home',
-          path: '/',
+          type: "page",
+          uid: "home",
+          path: "/",
         },
-      ]
-    }
+      ],
+      accessToken: prismicKey,
+    },
   },
 
   tailwindcss: {
     config: {
-      content: [
-        './app/**/*.{js,ts,vue}',
-        './slices/**/*.{js,ts,vue}'
-      ],
+      content: ["./app/**/*.{js,ts,vue}", "./slices/**/*.{js,ts,vue}"],
       theme: {
         fontFamily: {
-          sans: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
+          sans: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         },
       },
-      plugins: [tailwindAspectRatio]
-    }
-  }
-})
+      plugins: [tailwindAspectRatio],
+    },
+  },
+});
