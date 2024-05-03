@@ -58,7 +58,7 @@ export default defineNuxtConfig({
         },
         {
           type: "page",
-          uid: "home",
+          uid: "page-home",
           path: "/",
         },
       ],
