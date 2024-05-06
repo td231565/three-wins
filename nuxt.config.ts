@@ -5,7 +5,7 @@ const prismicKey = import.meta.env.NUXT_PRISMIC;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: true,
+  // devtools: true,
 
   app: {
     head: {
@@ -76,5 +76,6 @@ export default defineNuxtConfig({
       },
       plugins: [tailwindAspectRatio],
     },
+    quiet: true,
   },
 });
