@@ -28,9 +28,14 @@ defineProps(
           :key="item.image.url ?? undefined"
           class="slider__track__item"
         >
-          <PrismicLink :field="item.link" class="font-semibold">
+          <PrismicLink
+            v-if="item.link"
+            :field="item.link"
+            class="font-semibold"
+          >
             <PrismicImage :field="item.image" />
           </PrismicLink>
+          <PrismicImage v-else :field="item.image" />
         </li>
       </ul>
     </div>

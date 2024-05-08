@@ -1,4 +1,4 @@
-import tailwindAspectRatio from "@tailwindcss/aspect-ratio";
+// import tailwindAspectRatio from "@tailwindcss/aspect-ratio";
 import { repositoryName } from "./slicemachine.config.json";
 
 const prismicKey = import.meta.env.NUXT_PRISMIC;
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxtjs/prismic", "@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/prismic", "@nuxtjs/tailwindcss", "shadcn-nuxt"],
 
   prismic: {
     endpoint: repositoryName,
@@ -66,20 +66,32 @@ export default defineNuxtConfig({
     },
   },
 
-  tailwindcss: {
-    config: {
-      content: [
-        "./app/**/*.{js,ts,vue}",
-        "./slices/**/*.{js,ts,vue}",
-        "./components/**/*.{js,ts,vue}",
-      ],
-      theme: {
-        fontFamily: {
-          sans: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-        },
-      },
-      plugins: [tailwindAspectRatio],
-    },
-    quiet: true,
+  // tailwindcss: {
+  //   config: {
+  //     content: [
+  //       "./app/**/*.{js,ts,vue}",
+  //       "./slices/**/*.{js,ts,vue}",
+  //       "./components/**/*.{js,ts,vue}",
+  //     ],
+  //     theme: {
+  //       fontFamily: {
+  //         sans: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  //       },
+  //     },
+  //     plugins: [tailwindAspectRatio],
+  //   },
+  //   quiet: true,
+  // },
+
+  shadcn: {
+    /**
+     * Prefix for all the imported component
+     */
+    prefix: "",
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: "./components/ui",
   },
 });
