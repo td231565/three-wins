@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import { type Content, type HTMLRichTextMapSerializer } from '@prismicio/client'
+import {
+  type Content,
+  type HTMLRichTextMapSerializer,
+} from "@prismicio/client";
 
 // The array passed to \`getSliceComponentProps\` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(getSliceComponentProps<Content.HeroSlice>(
-  ['slice', 'index', 'slices', 'context']
-));
-const prismic = usePrismic()
+defineProps(
+  getSliceComponentProps<Content.HeroSlice>([
+    "slice",
+    "index",
+    "slices",
+    "context",
+  ])
+);
+const prismic = usePrismic();
 
 const serializer: HTMLRichTextMapSerializer = {
   ...prismic.options.richTextSerializer,
   heading1: ({ children }) =>
     /* html */ `<h2 class="font-semibold leading-tight tracking-tight md:leading-tight text-5xl md:text-7xl mb-4 mt-12 first:mt-0 last:mb-0">${children}</h2>`,
-}
+};
 </script>
 
 <template>
@@ -24,10 +32,7 @@ const serializer: HTMLRichTextMapSerializer = {
         class="pointer-events-none select-none object-cover opacity-40 h-full w-full"
       />
     </figure>
-    <Bounded
-      y-padding="lg"
-      class="relative"
-    >
+    <Bounded y-padding="lg" class="relative">
       <div class="grid justify-items-center gap-8">
         <PrismicRichText
           :field="slice.primary.text"
@@ -36,11 +41,18 @@ const serializer: HTMLRichTextMapSerializer = {
           wrapper="div"
         />
         <PrismicLink
-          v-if="slice.primary.buttonLink && ('id' in slice.primary.buttonLink || 'url' in slice.primary.buttonLink)"
+          v-if="
+            slice.primary.buttonLink &&
+            ('id' in slice.primary.buttonLink ||
+              'url' in slice.primary.buttonLink)
+          "
           :field="slice.primary.buttonLink"
-          class="rounded bg-white px-5 py-3 font-medium text-slate-800"
+          class="rounded-full bg-white px-5 py-3 font-medium"
         >
-          {{ slice.primary.buttonText || "Learn More" }}
+          <span
+            class="inline-block bg-clip-text text-transparent bg-[#1A42BC]/[0.6] bg-gradient-to-tr from-transparent to-[#1A42BC] text-xl tracking-wider"
+            >{{ slice.primary.buttonText }}</span
+          >
         </PrismicLink>
       </div>
     </Bounded>
