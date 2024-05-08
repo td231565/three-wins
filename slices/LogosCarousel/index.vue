@@ -15,34 +15,58 @@ defineProps(
 
 <template>
   <Bounded as="section" class="bg-white">
-    <div class="grid gap-12">
-      <Heading
-        v-if="$prismic.asText(slice.primary.eyebrowheadline)"
-        class="text-center"
-      >
-        {{ $prismic.asText(slice.primary.eyebrowheadline) }}
-      </Heading>
-      <ul class="grid grid-cols-1 gap-8 md:grid-cols-2">
+    <Heading
+      v-if="$prismic.asText(slice.primary.eyebrowheadline)"
+      class="text-center mb-10"
+    >
+      {{ $prismic.asText(slice.primary.eyebrowheadline) }}
+    </Heading>
+    <div class="slider">
+      <ul class="slider__track">
         <li
           v-for="item in slice.items"
           :key="item.image.url ?? undefined"
-          class="grid gap-8"
+          class="slider__track__item"
         >
-          <!-- <div
-            v-if="item.image.url"
-            class="bg-gray-100"
-          >
-            <PrismicImage
-              :field="item.image"
-            />
-          </div> -->
-          <div v-if="item.link && ('id' in item.link || 'url' in item.link)">
-            <PrismicLink :field="item.link" class="font-semibold">
-              <PrismicImage :field="item.image" />
-            </PrismicLink>
-          </div>
+          <PrismicLink :field="item.link" class="font-semibold">
+            <PrismicImage :field="item.image" />
+          </PrismicLink>
         </li>
       </ul>
     </div>
   </Bounded>
 </template>
+
+<style scoped lang="scss">
+.slider {
+  @apply w-full sm:w-[80%] max-w-[900px] mx-auto overflow-hidden relative;
+  &::before,
+  &::after {
+    @apply absolute top-0 h-full z-10;
+    width: 10rem;
+    content: "";
+  }
+  &::before {
+    @apply left-0 bg-gradient-to-r from-white to-transparent;
+  }
+  &::after {
+    @apply right-0 bg-gradient-to-l from-white to-transparent;
+  }
+  &__track {
+    @apply flex gap-x-3 items-center;
+    &__item {
+      @apply flex-1 h-full;
+      animation: scrolling 12s linear infinite;
+    }
+  }
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * 80vw * 3));
+  }
+}
+</style>
