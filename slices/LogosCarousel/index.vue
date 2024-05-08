@@ -3,7 +3,7 @@ import { type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.LogosCarouselSlice>([
     "slice",
     "index",
@@ -11,6 +11,18 @@ defineProps(
     "context",
   ])
 );
+
+const displayCount = 3;
+const sliderItems = computed(() => [
+  ...props.slice.items,
+  ...props.slice.items.slice(0, displayCount),
+]);
+
+const sliderRef = ref();
+onMounted(() => {
+  sliderRef.value.style.setProperty("--items-count", props.slice.items.length);
+  sliderRef.value.style.setProperty("--item-displayed", displayCount);
+});
 </script>
 
 <template>
@@ -21,19 +33,15 @@ defineProps(
     >
       {{ $prismic.asText(slice.primary.eyebrowheadline) }}
     </Heading>
-    <div class="slider">
+    <div ref="sliderRef" class="slider">
       <ul class="slider__track">
         <li
-          v-for="item in slice.items"
+          v-for="item in sliderItems"
           :key="item.image.url ?? undefined"
           class="slider__track__item"
         >
-          <PrismicLink
-            v-if="item.link"
-            :field="item.link"
-            class="font-semibold"
-          >
-            <PrismicImage :field="item.image" />
+          <PrismicLink v-if="item.link" :field="item.link" class="block">
+            <PrismicImage :field="item.image" class="block w-full" />
           </PrismicLink>
           <PrismicImage v-else :field="item.image" />
         </li>
@@ -44,12 +52,18 @@ defineProps(
 
 <style scoped lang="scss">
 .slider {
-  @apply w-full sm:w-[80%] max-w-[900px] mx-auto overflow-hidden relative;
+  --slider-width: 80vw;
+  // --items-count: define by js
+  // --item-displayed: 3;
+  --item-width: calc(var(--slider-width) / var(--item-displayed));
+  --animation-duration: calc(var(--items-count) * 3s);
+
+  width: var(--slider-width);
+  @apply mx-auto overflow-hidden relative;
+
   &::before,
   &::after {
-    @apply absolute top-0 h-full z-10;
-    width: 10rem;
-    content: "";
+    @apply absolute top-0 h-full z-10 w-[10rem] content-[''];
   }
   &::before {
     @apply left-0 bg-gradient-to-r from-white to-transparent;
@@ -57,12 +71,24 @@ defineProps(
   &::after {
     @apply right-0 bg-gradient-to-l from-white to-transparent;
   }
+
   &__track {
-    @apply flex gap-x-3 items-center;
-    &__item {
-      @apply flex-1 h-full;
-      animation: scrolling 12s linear infinite;
+    @apply flex items-center;
+    animation: scrolling var(--animation-duration) linear infinite;
+    &:hover {
+      animation-play-state: paused;
     }
+
+    &__item {
+      width: var(--item-width);
+      @apply max-h-full flex justify-center items-center shrink-0 whitespace-nowrap;
+    }
+  }
+}
+
+@media (min-width: 1125px) {
+  .slider {
+    --slider-width: 900px;
   }
 }
 
@@ -71,7 +97,7 @@ defineProps(
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-1 * 80vw * 3));
+    transform: translateX(calc(-1 * var(--item-width) * var(--items-count)));
   }
 }
 </style>

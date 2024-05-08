@@ -6,8 +6,9 @@ const { data: page } = useAsyncData("index", () =>
   prismic.client.getByUID("page", "page-home")
 );
 
+const settings = useSettings();
 useHead({
-  title: computed(() => prismic.asText(page.value?.data.title)),
+  title: computed(() => prismic.asText(settings.value?.data.siteTitle)),
 });
 </script>
 

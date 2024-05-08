@@ -19,7 +19,7 @@ const prismic = usePrismic();
 const serializer: HTMLRichTextMapSerializer = {
   ...prismic.options.richTextSerializer,
   heading1: ({ children }) =>
-    /* html */ `<h2 class="font-semibold leading-tight tracking-tight md:leading-tight text-5xl md:text-7xl mb-4 mt-12 first:mt-0 last:mb-0">${children}</h2>`,
+    /* html */ `<h2 class="font-semibold leading-tight tracking-tight md:leading-tight text-5xl md:text-6xl mb-4 mt-12 first:mt-0 last:mb-0 tracking-wide">${children}</h2>`,
 };
 </script>
 
@@ -30,7 +30,7 @@ const serializer: HTMLRichTextMapSerializer = {
         v-if="slice.primary.backgroundImage.url"
         :field="slice.primary.backgroundImage"
         class="pointer-events-none select-none object-cover opacity-90 h-full w-full block"
-        style="clip-path: polygon(100% 0, 100% 85%, 50% 100%, 0 85%, 0 0)"
+        style="clip-path: polygon(100% 0, 100% 90%, 50% 100%, 0 90%, 0 0)"
       />
     </figure>
     <Bounded y-padding="lg" class="relative">
