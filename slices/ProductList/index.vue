@@ -14,8 +14,6 @@ defineProps(
 
 const products = useProducts();
 const list = computed(() => products.value?.results);
-
-console.log(list);
 </script>
 
 <template>

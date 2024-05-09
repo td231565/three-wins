@@ -31,18 +31,12 @@
         }
       },
       "category": {
-        "type": "Text",
+        "type": "Select",
         "config": {
           "label": "Category",
-          "placeholder": ""
-        }
-      },
-      "gategory": {
-        "type": "Group",
-        "config": {
-          "label": "Gategory",
-          "repeat": true,
-          "fields": {}
+          "placeholder": "請選擇頁面類型",
+          "options": ["default", "product"],
+          "default_value": "default"
         }
       },
       "slices": {
@@ -79,6 +73,13 @@
       }
     },
     "SeoMeta": {
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "description",
+          "placeholder": ""
+        }
+      },
       "og_url": {
         "type": "Text",
         "config": {
@@ -106,6 +107,15 @@
           "label": "og:image",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "og_type": {
+        "type": "Select",
+        "config": {
+          "label": "og:type",
+          "placeholder": "",
+          "options": ["article", "website"],
+          "default_value": "article"
         }
       }
     }
