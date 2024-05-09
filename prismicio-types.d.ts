@@ -118,7 +118,13 @@ export type NavigationDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Page → Gategory*
+ */
+export interface PageDocumentDataGategoryItem {}
+
 type PageDocumentDataSlicesSlice =
+  | ProductListSlice
   | LogosCarouselSlice
   | HeroSlice
   | QuoteSlice
@@ -154,6 +160,28 @@ interface PageDocumentData {
   parent: prismic.ContentRelationshipField<"page">;
 
   /**
+   * Category field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  category: prismic.KeyTextField;
+
+  /**
+   * Gategory field in *Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.gategory[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gategory: prismic.GroupField<Simplify<PageDocumentDataGategoryItem>>;
+
+  /**
    * Slice Zone field in *Page*
    *
    * - **Field Type**: Slice Zone
@@ -163,6 +191,17 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
+   * og:url field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.og_url
+   * - **Tab**: SeoMeta
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  og_url: prismic.KeyTextField;
+
+  /**
    * og:title field in *Page*
    *
    * - **Field Type**: Text
@@ -170,8 +209,30 @@ interface PageDocumentData {
    * - **API ID Path**: page.og_title
    * - **Tab**: SeoMeta
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
   og_title: prismic.KeyTextField;
+
+  /**
+   * og:description field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.og_description
+   * - **Tab**: SeoMeta
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  og_description: prismic.KeyTextField;
+
+  /**
+   * og:image field in *Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.og_image
+   * - **Tab**: SeoMeta
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  og_image: prismic.ImageField<never>;
 }
 
 /**
@@ -185,6 +246,75 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+type ProductPageDocumentDataSlicesSlice =
+  | TextWithImageSlice
+  | ImageCardsSlice
+  | TextSlice
+  | ImageSlice;
+
+/**
+ * Content for Product documents
+ */
+interface ProductPageDocumentData {
+  /**
+   * Slice Zone field in *Product*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: productPage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProductPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: productPage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Product*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: productPage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: productPage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Product document from Prismic
+ *
+ * - **API ID**: `productPage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProductPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProductPageDocumentData>,
+    "productPage",
+    Lang
+  >;
 
 /**
  * Content for Settings documents
@@ -222,6 +352,7 @@ export type AllDocumentTypes =
   | FooterDocument
   | NavigationDocument
   | PageDocument
+  | ProductPageDocument
   | SettingsDocument;
 
 /**
@@ -547,6 +678,36 @@ export type LogosCarouselSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Default variation for ProductList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *ProductList*
+ */
+type ProductListSliceVariation = ProductListSliceDefault;
+
+/**
+ * ProductList Shared Slice
+ *
+ * - **API ID**: `product_list`
+ * - **Description**: ProductList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductListSlice = prismic.SharedSlice<
+  "product_list",
+  ProductListSliceVariation
+>;
+
+/**
  * Primary content in *Quote → Primary*
  */
 export interface QuoteSliceDefaultPrimary {
@@ -801,7 +962,11 @@ declare module "@prismicio/client" {
       NavigationDocumentDataLinksItem,
       PageDocument,
       PageDocumentData,
+      PageDocumentDataGategoryItem,
       PageDocumentDataSlicesSlice,
+      ProductPageDocument,
+      ProductPageDocumentData,
+      ProductPageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
@@ -825,6 +990,9 @@ declare module "@prismicio/client" {
       LogosCarouselSliceDefaultItem,
       LogosCarouselSliceVariation,
       LogosCarouselSliceDefault,
+      ProductListSlice,
+      ProductListSliceVariation,
+      ProductListSliceDefault,
       QuoteSlice,
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,

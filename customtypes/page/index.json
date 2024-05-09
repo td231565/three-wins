@@ -30,11 +30,29 @@
           "customtypes": ["page"]
         }
       },
+      "category": {
+        "type": "Text",
+        "config": {
+          "label": "Category",
+          "placeholder": ""
+        }
+      },
+      "gategory": {
+        "type": "Group",
+        "config": {
+          "label": "Gategory",
+          "repeat": true,
+          "fields": {}
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "product_list": {
+              "type": "SharedSlice"
+            },
             "logos_carousel": {
               "type": "SharedSlice"
             },
@@ -61,11 +79,33 @@
       }
     },
     "SeoMeta": {
+      "og_url": {
+        "type": "Text",
+        "config": {
+          "label": "og:url",
+          "placeholder": ""
+        }
+      },
       "og_title": {
         "type": "Text",
         "config": {
           "label": "og:title",
           "placeholder": ""
+        }
+      },
+      "og_description": {
+        "type": "Text",
+        "config": {
+          "label": "og:description",
+          "placeholder": ""
+        }
+      },
+      "og_image": {
+        "type": "Image",
+        "config": {
+          "label": "og:image",
+          "constraint": {},
+          "thumbnails": []
         }
       }
     }

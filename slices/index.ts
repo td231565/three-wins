@@ -10,6 +10,7 @@ export const components = defineSliceZoneComponents({
   logos_carousel: defineAsyncComponent(
     () => import("./LogosCarousel/index.vue"),
   ),
+  product_list: defineAsyncComponent(() => import("./ProductList/index.vue")),
   quote: defineAsyncComponent(() => import("./Quote/index.vue")),
   text: defineAsyncComponent(() => import("./Text/index.vue")),
   text_with_image: defineAsyncComponent(
