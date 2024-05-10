@@ -44,6 +44,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "feature_description": {
+              "type": "SharedSlice"
+            },
             "product_list": {
               "type": "SharedSlice"
             },

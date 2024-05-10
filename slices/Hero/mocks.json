@@ -54,6 +54,17 @@
 				"alt": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"caption": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Sit consequat aliqua aliqua duis dolore do. Magna in adipisicing labore culpa. Eiusmod tempor sint mollit in eiusmod eiusmod laborum excepteur dolore."
+						}
+					}
+				]
 			}
 		},
 		"items": [

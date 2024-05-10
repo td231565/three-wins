@@ -119,6 +119,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | FeatureDescriptionSlice
   | ProductListSlice
   | LogosCarouselSlice
   | HeroSlice
@@ -294,9 +295,234 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *FeatureDescription → Primary*
+ */
+export interface FeatureDescriptionSliceDefaultPrimary {
+  /**
+   * Title field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Sub Title field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  sub_title: prismic.KeyTextField;
+
+  /**
+   * Text field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Button Text field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *FeatureDescription → Items*
+ */
+export interface FeatureDescriptionSliceDefaultItem {
+  /**
+   * Image field in *FeatureDescription → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Description field in *FeatureDescription → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * icon field in *FeatureDescription → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+}
+
+/**
+ * bubble variation for FeatureDescription Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeatureDescriptionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FeatureDescriptionSliceDefaultPrimary>,
+  Simplify<FeatureDescriptionSliceDefaultItem>
+>;
+
+/**
+ * Primary content in *FeatureDescription → Primary*
+ */
+export interface FeatureDescriptionSliceLeafPrimary {
+  /**
+   * Title field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Sub Title field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  sub_title: prismic.KeyTextField;
+
+  /**
+   * Text field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Button Text field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *FeatureDescription → Items*
+ */
+export interface FeatureDescriptionSliceLeafItem {
+  /**
+   * icon field in *FeatureDescription → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Description field in *FeatureDescription → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
+ * leaf variation for FeatureDescription Slice
+ *
+ * - **API ID**: `leaf`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeatureDescriptionSliceLeaf = prismic.SharedSliceVariation<
+  "leaf",
+  Simplify<FeatureDescriptionSliceLeafPrimary>,
+  Simplify<FeatureDescriptionSliceLeafItem>
+>;
+
+/**
+ * Slice variation for *FeatureDescription*
+ */
+type FeatureDescriptionSliceVariation =
+  | FeatureDescriptionSliceDefault
+  | FeatureDescriptionSliceLeaf;
+
+/**
+ * FeatureDescription Shared Slice
+ *
+ * - **API ID**: `feature_description`
+ * - **Description**: FeatureDescription
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeatureDescriptionSlice = prismic.SharedSlice<
+  "feature_description",
+  FeatureDescriptionSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Primary*
  */
 export interface HeroSliceDefaultPrimary {
+  /**
+   * Caption field in *Hero → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.caption
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  caption: prismic.RichTextField;
+
   /**
    * Text field in *Hero → Primary*
    *
@@ -308,16 +534,6 @@ export interface HeroSliceDefaultPrimary {
   text: prismic.RichTextField;
 
   /**
-   * Button Link field in *Hero → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Button Link
-   * - **API ID Path**: hero.primary.buttonLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  buttonLink: prismic.LinkField;
-
-  /**
    * Button Text field in *Hero → Primary*
    *
    * - **Field Type**: Text
@@ -326,6 +542,16 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   buttonText: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Hero → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Button Link
+   * - **API ID Path**: hero.primary.buttonLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  buttonLink: prismic.LinkField;
 
   /**
    * Background Image field in *Hero → Primary*
@@ -904,6 +1130,14 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      FeatureDescriptionSlice,
+      FeatureDescriptionSliceDefaultPrimary,
+      FeatureDescriptionSliceDefaultItem,
+      FeatureDescriptionSliceLeafPrimary,
+      FeatureDescriptionSliceLeafItem,
+      FeatureDescriptionSliceVariation,
+      FeatureDescriptionSliceDefault,
+      FeatureDescriptionSliceLeaf,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

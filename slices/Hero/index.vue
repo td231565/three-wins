@@ -19,7 +19,7 @@ const prismic = usePrismic();
 const serializer: HTMLRichTextMapSerializer = {
   ...prismic.options.richTextSerializer,
   heading1: ({ children }) =>
-    /* html */ `<h2 class="font-semibold leading-tight tracking-tight md:leading-tight text-5xl md:text-6xl mb-4 mt-12 first:mt-0 last:mb-0 tracking-wide">${children}</h2>`,
+    /* html */ `<h2 class="font-semibold leading-tight tracking-tight text-4xl sm:text-5xl mb-4 last:mb-0 sm:tracking-wide">${children}</h2>`,
 };
 </script>
 
@@ -34,27 +34,33 @@ const serializer: HTMLRichTextMapSerializer = {
       />
     </figure>
     <Bounded y-padding="lg" class="relative">
-      <div class="grid justify-items-center gap-8">
+      <div class="space-y-8 max-w-[610px] mx-auto">
+        <PrismicRichText
+          :field="slice.primary.caption"
+          :html-serializer="serializer"
+          wrapper="div"
+        />
         <PrismicRichText
           :field="slice.primary.text"
           :html-serializer="serializer"
-          class="max-w-2xl text-center"
           wrapper="div"
         />
-        <PrismicLink
-          v-if="
-            slice.primary.buttonLink &&
-            ('id' in slice.primary.buttonLink ||
-              'url' in slice.primary.buttonLink)
-          "
-          :field="slice.primary.buttonLink"
-          class="rounded-full bg-white px-5 py-3 font-medium"
-        >
-          <span
-            class="inline-block bg-clip-text text-transparent bg-[#1A42BC]/[0.6] bg-gradient-to-tr from-transparent to-[#1A42BC] text-xl tracking-wider"
-            >{{ slice.primary.buttonText }}</span
+        <div class="w-full text-center">
+          <PrismicLink
+            v-if="
+              slice.primary.buttonLink &&
+              ('id' in slice.primary.buttonLink ||
+                'url' in slice.primary.buttonLink)
+            "
+            :field="slice.primary.buttonLink"
+            class="rounded-full bg-white px-14 py-3 font-medium inline-block"
           >
-        </PrismicLink>
+            <span
+              class="inline-block bg-clip-text text-transparent bg-[#1A42BC]/[0.6] bg-gradient-to-tr from-transparent to-[#1A42BC] text-xl tracking-wider"
+              >{{ slice.primary.buttonText }}</span
+            >
+          </PrismicLink>
+        </div>
       </div>
     </Bounded>
   </section>
