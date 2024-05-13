@@ -47,13 +47,32 @@
             "placeholder": "",
             "select": null
           }
+        },
+        "top_shape": {
+          "type": "Select",
+          "config": {
+            "label": "Top Shape",
+            "placeholder": "區塊頂部的造型",
+            "options": [
+              "horizontal",
+              "angle"
+            ],
+            "default_value": "horizontal"
+          }
+        },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color",
+            "placeholder": ""
+          }
         }
       },
       "items": {
-        "image": {
+        "icon": {
           "type": "Image",
           "config": {
-            "label": "Image",
+            "label": "icon",
             "constraint": {},
             "thumbnails": []
           }
@@ -63,14 +82,6 @@
           "config": {
             "label": "Description",
             "placeholder": ""
-          }
-        },
-        "icon": {
-          "type": "Image",
-          "config": {
-            "label": "icon",
-            "constraint": {},
-            "thumbnails": []
           }
         }
       }
@@ -117,6 +128,25 @@
             "label": "Button Link",
             "placeholder": "",
             "select": null
+          }
+        },
+        "top_shape": {
+          "type": "Select",
+          "config": {
+            "label": "Top Shape",
+            "placeholder": "區塊頂部的造型",
+            "options": [
+              "horizontal",
+              "angle"
+            ],
+            "default_value": "horizontal"
+          }
+        },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color",
+            "placeholder": ""
           }
         }
       },

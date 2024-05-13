@@ -347,6 +347,27 @@ export interface FeatureDescriptionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField;
+
+  /**
+   * Top Shape field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: 區塊頂部的造型
+   * - **Default Value**: horizontal
+   * - **API ID Path**: feature_description.primary.top_shape
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  top_shape: prismic.SelectField<"horizontal" | "angle", "filled">;
+
+  /**
+   * Background Color field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
 }
 
 /**
@@ -354,14 +375,14 @@ export interface FeatureDescriptionSliceDefaultPrimary {
  */
 export interface FeatureDescriptionSliceDefaultItem {
   /**
-   * Image field in *FeatureDescription → Items*
+   * icon field in *FeatureDescription → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: feature_description.items[].image
+   * - **API ID Path**: feature_description.items[].icon
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  icon: prismic.ImageField<never>;
 
   /**
    * Description field in *FeatureDescription → Items*
@@ -372,16 +393,6 @@ export interface FeatureDescriptionSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   description: prismic.KeyTextField;
-
-  /**
-   * icon field in *FeatureDescription → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: feature_description.items[].icon
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  icon: prismic.ImageField<never>;
 }
 
 /**
@@ -450,6 +461,27 @@ export interface FeatureDescriptionSliceLeafPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField;
+
+  /**
+   * Top Shape field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: 區塊頂部的造型
+   * - **Default Value**: horizontal
+   * - **API ID Path**: feature_description.primary.top_shape
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  top_shape: prismic.SelectField<"horizontal" | "angle", "filled">;
+
+  /**
+   * Background Color field in *FeatureDescription → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_description.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
 }
 
 /**

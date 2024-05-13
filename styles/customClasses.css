@@ -1,0 +1,7 @@
+.text-gradient-primary {
+  @apply bg-clip-text text-transparent bg-[#1A42BC]/[0.6] bg-gradient-to-tr from-transparent to-[#1A42BC];
+}
+
+.bg-gradient-primary {
+  @apply bg-[#1A42BC]/[0.6] bg-gradient-to-tr from-transparent to-[#1A42BC];
+}

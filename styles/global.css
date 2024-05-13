@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "./tailwind.css";
+@import "./customClasses.css";
 
 body {
   @apply overflow-x-hidden antialiased;

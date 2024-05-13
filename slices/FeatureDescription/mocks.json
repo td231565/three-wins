@@ -29,6 +29,16 @@
 					"__TYPE__": "ExternalLink",
 					"url": "https://slicemachine.dev"
 				}
+			},
+			"top_shape": {
+				"__TYPE__": "FieldContent",
+				"value": "angle",
+				"type": "Select"
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#4deb50",
+				"type": "Color"
 			}
 		},
 		"items": [
@@ -55,32 +65,6 @@
 							"url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51",
 							"width": 2545,
 							"height": 2545,
-							"edit": {
-								"zoom": 1,
-								"crop": {
-									"x": 0,
-									"y": 0
-								},
-								"background": "transparent"
-							},
-							"credits": null,
-							"alt": null,
-							"__TYPE__": "ImageContent",
-							"thumbnails": {}
-						}
-					],
-					[
-						"image",
-						{
-							"origin": {
-								"id": "main",
-								"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
-								"width": 3212,
-								"height": 3880
-							},
-							"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
-							"width": 3212,
-							"height": 3880,
 							"edit": {
 								"zoom": 1,
 								"crop": {
@@ -129,6 +113,16 @@
 					"__TYPE__": "ExternalLink",
 					"url": "http://twitter.com"
 				}
+			},
+			"top_shape": {
+				"__TYPE__": "FieldContent",
+				"value": "horizontal",
+				"type": "Select"
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#bd5640",
+				"type": "Color"
 			}
 		},
 		"items": [
