@@ -1,8 +1,6 @@
 // import tailwindAspectRatio from "@tailwindcss/aspect-ratio";
 import { repositoryName } from "./slicemachine.config.json";
 
-const prismicKey = import.meta.env.NUXT_PRISMIC;
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: true,
@@ -65,7 +63,7 @@ export default defineNuxtConfig({
           path: "/",
         },
       ],
-      accessToken: prismicKey,
+      accessToken: import.meta.env.NUXT_PRISMIC,
     },
   },
 
@@ -87,14 +85,15 @@ export default defineNuxtConfig({
   // },
 
   shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
+    //Prefix for all the imported component
     prefix: "",
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
     componentDir: "./components/ui",
+  },
+
+  runtimeConfig: {
+    public: {
+      GOOGLE_API_KEY: import.meta.env.NUXT_GOOGLE,
+      SPREAD_SHEET_ID: import.meta.env.NUXT_SHEET_ID,
+    },
   },
 });
